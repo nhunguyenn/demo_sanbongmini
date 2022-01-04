@@ -15,6 +15,7 @@ $customer = new customer();
 $card = new card();
 $decentralization = new decentralization();
 $sport = new sport();
+$time = new time();
 
 // Header
 include_once './layouts/header.php';
@@ -63,6 +64,9 @@ if (isset($_GET['q'])) {
             break;
         case 'sport':
             include_once './views/sport/sport.php';
+            break;
+        case 'time':
+            include_once './views/time/time.php';
             break;
         default:
             include_once './views/error.php';

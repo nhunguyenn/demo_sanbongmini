@@ -88,6 +88,10 @@
                             &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-arrow-circle-right"></i>
                             <p>&nbsp; Quản lý đặt sân</p>
                         </a>
+                        <a href="?q=time" class="nav-link">
+                            &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-arrow-circle-right"></i>
+                            <p>&nbsp; Quản lý khung giờ</p>
+                        </a>
                     </li>
                 </ul>
             </li>
