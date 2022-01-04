@@ -16,7 +16,7 @@ $card = new card();
 $decentralization = new decentralization();
 $sport = new sport();
 $time = new time();
-
+$place = new place();
 // Header
 include_once './layouts/header.php';
 
@@ -67,6 +67,12 @@ if (isset($_GET['q'])) {
             break;
         case 'time':
             include_once './views/time/time.php';
+            break;
+        case 'order':
+            include_once './views/order/index.php';
+            break;
+        case 'addOrder':
+            include_once './views/order/add.php';
             break;
         default:
             include_once './views/error.php';
