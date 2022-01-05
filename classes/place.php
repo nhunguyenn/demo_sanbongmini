@@ -101,5 +101,46 @@ class place
         $alert = '<script> toastr.warning("Hủy đặt sân thất bại!");</script>';
         return $alert;
     }
+
+    public function getOrderTrash()
+    {
+        $query = "SELECT * FROM orders WHERE activate = '0' ORDER BY id DESC";
+        $result = $this->db->select($query);
+        return $result;
+    }
+    public function restoreOrder($id)
+    {
+        $query = "SELECT * FROM orders WHERE id = '$id'";
+        $result = $this->db->select($query);
+        if ($result) {
+            $query = "UPDATE `orders` SET `activate` = 1 WHERE id = '$id'";
+            $result = $this->db->update($query);
+            if ($result) {
+                $alert = '<script> toastr.success("Phục hồi thành công!");</script>';
+                return $alert;
+            }
+            $alert = '<script> toastr.warning("Đã xóa thất bại!");</script>';
+            return $alert;
+        }
+    }
+    public function deleteOrder($id)
+    {
+        $query = "SELECT * FROM orders WHERE id = '$id'";
+        $result = $this->db->select($query);
+        if ($result) {
+            $query = "DELETE FROM orders WHERE id = '$id'";
+            $result = $this->db->delete($query);
+
+            if ($result) {
+                $alert = '<script> toastr.success("Đã xóa thành công!");</script>';
+                return $alert;
+            }
+            $alert = '<script> toastr.warning("Đã xóa thất bại!");</script>';
+            return $alert;
+        }
+    }
+
+  
+
 }
 ?>
