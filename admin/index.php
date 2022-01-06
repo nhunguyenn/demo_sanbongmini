@@ -77,6 +77,12 @@ if (isset($_GET['q'])) {
         case 'trashOrder':
             include_once './views/order/trash.php';
             break;
+        case 'editOrder':
+            include_once './views/order/edit.php';
+            break;
+        case 'bill':
+            include_once './views/bill/bill.php';
+            break;
         default:
             include_once './views/error.php';
             break;

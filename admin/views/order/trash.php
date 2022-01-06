@@ -50,7 +50,7 @@ if (isset($checkOrder)) {
                 </div>
             </div>
             <div class="card-body p-0">
-                <table class="table table-striped projects">
+            <table class="table table-striped projects">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -60,37 +60,29 @@ if (isset($checkOrder)) {
                             <th>Loại sân</th>
                             <th>Khung giờ</th>
                             <th>Tiền cọc</th>
-                            <th>Thao tác</th>
                         </tr>
                     </thead>
+
                     <tbody>
                     <?php
-                        $result = $place->getOrderTrash();
+                        $result = $place->gettrash();
                         $i = 1;
                         if ($result) {
                             while ($value = $result->fetch_assoc()) {
                         ?>
                                 <tr>
                                     <td><?php echo $i++ ?></td>
-                                    <td><?php echo $value['fullname'] ?></a></td>
+                                    <td><a href="?q=orderInfo&id=<?php echo $value['id'] ?>"><?php echo $value['fullname'] ?></a></td>
+                                    <td><?php echo $value['phone'] ?></td>
                                     <td><?php echo $value['date_order'] ?></td>
-                                    <td><?php echo $value['sport'] ?></td>
-                                    <td><?php echo $value['time'] ?></td>
+                                    <td><?php echo $value['name_sport'] ?></td>
+                                    <td><?php echo $value['start_time'] ?> - <?php echo $value['end_time'] ?></td>
                                     <td><?php echo $value['deposit'] ?></td>
-                                    <td><?php echo $value['description'] ?></td>
-                                    <td project-state>
-                                        <a class="btn btn-primary btn-sm" href="?q=trashOrder&restore&id=<?php echo $value['id'] ?>" data-toggle="tooltip">
-                                            <i class="fas fa-reply-all"></i> Phục hồi
-                                        </a>
-                                        <a class="btn btn-danger btn-sm" href="?q=trashOrder&delete&id=<?php echo $value['id'] ?>" type="submit"><i class="fa fa-trash-o" aria-hidden="true">
-                                                <i class="fas fa-times"></i> Xóa vĩnh viễn
-                                        </a>
-                                    </td>
                                 </tr>
                         <?php }
                         } ?>
                     </tbody>
-                    </table>
+                </table>
             </div>
             <!-- /.card-body -->
         </div>

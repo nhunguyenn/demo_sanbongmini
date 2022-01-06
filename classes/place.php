@@ -51,7 +51,7 @@ class place
     public function getOrderId($id)
     {
         $query = "SELECT orders.id as id, orders.fullname, orders.phone, date_order, email, sport.name as name_sport, 
-        time.start as start_time, time.end as end_time, orders.deposit, description FROM orders, sport, 
+        time.start as start_time, time.end as end_time, orders.time as time ,orders.deposit, description FROM orders, sport, 
         time WHERE orders.sport = sport.id AND orders.time = time.id AND activate = '1' AND orders.id = '$id'";
         $result = $this->db->select($query);
         return $result;
@@ -104,7 +104,9 @@ class place
 
     public function getOrderTrash()
     {
-        $query = "SELECT * FROM orders WHERE activate = '0' ORDER BY id DESC";
+        $query = "SELECT orders.id as id, orders.fullname, orders.phone, date_order, email, sport.name as name_sport, 
+        time.start as start_time, time.end as end_time, orders.deposit, description FROM orders, sport, 
+        time WHERE orders.sport = sport.id AND orders.time = time.id AND activate = '0'";
         $result = $this->db->select($query);
         return $result;
     }
@@ -140,7 +142,32 @@ class place
         }
     }
 
-  
+    public function updateOrder($id, $date_order, $time)
+    {
+        $date_order = mysqli_real_escape_string($this->db->link, $this->fm->validation($date_order));
+        $time = mysqli_real_escape_string($this->db->link, $this->fm->validation($time));
 
+        if (empty($date_order)) {
+            $query = "UPDATE `orders` SET `time`='$time' WHERE id = '$id'";
+        } else {
+            $query = "UPDATE `orders` SET `date_order`='$date_order', `time`='$time' WHERE id = '$id'";
+        }
+        $result = $this->db->update($query);
+
+        if ($result) {
+            $alert = '<script> toastr.success("Cập nhật thành công!");</script>';
+            return $alert;
+        }
+        $alert = '<script> toastr.warning("Cập nhật không thành công!");</script>';
+        return $alert;
+    }
+    public function gettrash()
+    {
+        $query = "SELECT orders.id as id, orders.fullname, orders.phone, date_order, email, sport.name as name_sport, 
+        time.start as start_time, time.end as end_time, orders.deposit, description FROM orders, sport, 
+        time WHERE orders.sport = sport.id AND orders.time = time.id AND activate = '0'";
+        $result = $this->db->select($query);
+        return $result;
+    }
 }
 ?>

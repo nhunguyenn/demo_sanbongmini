@@ -39,7 +39,7 @@ if (isset($_GET['id'])) {
                         <i class="fas fa-plus"></i> Đặt sân
                     </a>
                     <a class="btn btn-danger btn-sm" href="?q=trashOrder">
-                        <i class="fas fa-trash"></i> Thùng rác
+                        <i class="fas fa-trash"></i> Danh sách hủy sân
                     </a>
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                         <i class="fas fa-minus"></i>
@@ -73,14 +73,14 @@ if (isset($_GET['id'])) {
                         ?>
                                 <tr>
                                     <td><?php echo $i++ ?></td>
-                                    <td><a href="?q=orderInfo&id=<?php echo $value['id'] ?>"><?php echo $value['fullname'] ?></a></td>
+                                    <td><?php echo $value['fullname'] ?></td>
                                     <td><?php echo $value['phone'] ?></td>
                                     <td><?php echo $value['date_order'] ?></td>
                                     <td><?php echo $value['name_sport'] ?></td>
                                     <td><?php echo $value['start_time'] ?> - <?php echo $value['end_time'] ?></td>
                                     <td><?php echo $value['deposit'] ?></td>
                                     <td project-state>
-                                        <a class="btn btn-primary btn-sm" href="" class="edit" title="Edit" data-toggle="tooltip">
+                                        <a class="btn btn-primary btn-sm" href="?q=editOrder&id=<?php echo $value['id'] ?>" class="edit" title="Edit" data-toggle="tooltip">
                                             <i class="fas fa-pencil-alt"></i> Sửa
                                         </a>
                                         <a class="btn btn-danger btn-sm" href="?q=order&id=<?php echo $value['id'] ?>" type="submit"><i class="fa fa-trash-o" aria-hidden="true">
