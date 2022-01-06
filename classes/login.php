@@ -34,6 +34,7 @@ class login
 		if ($_POST['username'] == "admin" && $_POST['password'] == "admin") {
 			Session::set('login', true);
 			Session::set('name', 'Ban Quản Lý');
+			Session::set('id', 'aa0012312');
 			Session::set('role', 0);
 			echo "<script>window.location='?q=home';</script>";
 		}
@@ -44,6 +45,7 @@ class login
 			$value = $result->fetch_assoc();
 			Session::set('login', true);
 			Session::set('name', $value['fullname']);
+			Session::set('id', $value['id']);
 			Session::set('role', $value['role']);
 			echo "<script>window.location='?q=home';</script>";
 		}

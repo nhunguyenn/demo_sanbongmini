@@ -17,6 +17,7 @@ $decentralization = new decentralization();
 $sport = new sport();
 $time = new time();
 $place = new place();
+$bill = new bill();
 // Header
 include_once './layouts/header.php';
 
@@ -82,6 +83,9 @@ if (isset($_GET['q'])) {
             break;
         case 'bill':
             include_once './views/bill/bill.php';
+            break;
+        case 'payment':
+            include_once './views/bill/payment.php';
             break;
         default:
             include_once './views/error.php';

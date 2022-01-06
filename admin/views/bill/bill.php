@@ -1,3 +1,4 @@
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -42,12 +43,33 @@
                             <th>Số điện thoại</th>
                             <th>Ngày đặt</th>
                             <th>Tiền cọc</th>
+                            <th>Tổng hóa đơn</th>
                             <th>Trạng thái</th>
-                            <th>Xem</th>
+                            <th>Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
-
+                    <?php
+                        $result = $bill->getOrder();
+                        $i = 1;
+                        if ($result) {
+                            while ($value = $result->fetch_assoc()) {
+                        ?>
+                                <tr>
+                                    <td><?php echo $i++ ?></td>
+                                    <td><?php echo $value['fullname'] ?></td>
+                                    <td><?php echo $value['phone'] ?></td>
+                                    <td><?php echo $value['date_order'] ?></td>
+                                    <td><?php echo $value['deposit'] ?></td>
+                                    <td><?php echo $value['price'] ?></td>
+                                    <td><?php if ($value['activate'] == 0){echo'Đã thanh toán';} else {echo 'Chưa thanh toán';}?></td>
+                                    <td project-state>
+                                        <a class="btn btn-primary btn-sm" href="?q=payment&id=<?php echo $value['id'] ?>" class="edit" title="Edit" data-toggle="tooltip">
+                                            <i class="fas fa-eye"></i> Xem
+                                    </td>
+                                </tr>
+                        <?php }
+                        } ?>
                     </tbody>
                     </table>
             </div>
