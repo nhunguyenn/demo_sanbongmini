@@ -10,6 +10,8 @@ if (isset($_GET['id'])) {
 }
 ?>
 
+
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -83,7 +85,7 @@ if (isset($_GET['id'])) {
                                         <a class="btn btn-primary btn-sm" href="?q=editOrder&id=<?php echo $value['id'] ?>" class="edit" title="Edit" data-toggle="tooltip">
                                             <i class="fas fa-pencil-alt"></i> Sửa
                                         </a>
-                                        <a class="btn btn-danger btn-sm" href="?q=order&id=<?php echo $value['id'] ?>" type="submit"><i class="fa fa-trash-o" aria-hidden="true">
+                                        <a class="btn btn-danger btn-sm" href="?q=order&id=<?php echo $value['id'] ?>" type="submit"><i class="fa fa-trash-o" name="Cancel" >
                                                 <i class="fas fa-book"></i> Hủy
                                         </a>
                                     </td>

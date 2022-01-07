@@ -45,11 +45,11 @@ class bill
         $total_bill = mysqli_real_escape_string($this->db->link, $this->fm->validation($total_bill));
 
         if (empty($id_staff) || empty($id) || empty($total_bill)) {
-            $alert = '<script> toastr.warning("Vui lòng nhập đầy đủ thông tin!");</script>';
-            return $alert;
+        $alert = '<script> toastr.warning("Vui lòng nhập đầy đủ thông tin!");</script>';
+        return $alert;
         }
 
-        $query = "INSERT INTO bills (staff, customer, total_bill) VALUES ('$id_staff', '$id', '$total_bill')";
+        $query = "INSERT INTO bills (staff, customer, total_bill, activate) VALUES ('$id_staff', '$id', '$total_bill','1')";
         $result = $this->db->insert($query);
         if ($result) {
             $query = "UPDATE orders SET activate = 0 WHERE id = '$id'";

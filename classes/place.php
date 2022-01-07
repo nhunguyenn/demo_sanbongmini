@@ -89,12 +89,19 @@ class place
         $result = $this->db->update($query);
 
         if ($result) {
-            $query = "INSERT INTO `bills`(`staff`, `customer`, `activate`) VALUES ('$idStaff','$idOrder','1')";
-            $result = $this->db->insert($query);
+            $query = "SELECT * FROM orders WHERE id = '$idOrder'";
+            $result = $this->db->select($query);
 
             if ($result) {
-                $alert = '<script> toastr.success("Hủy đặt sân thành công!");</script>';
-                return $alert;
+                $value = $result->fetch_assoc();
+                $total_bill = $value['deposit'];
+                $query = "INSERT INTO `bills`(`staff`, `total_bill`, `activate`) VALUES ('$idStaff','$total_bill','0')";
+                $result = $this->db->insert($query);
+
+                if ($result) {
+                    $alert = '<script> toastr.success("Hủy đặt sân thành công!");</script>';
+                    return $alert;
+                }
             }
         }
 
