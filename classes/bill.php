@@ -54,6 +54,10 @@ class bill
         if ($result) {
             $query = "UPDATE orders SET activate = 0 WHERE id = '$id'";
             $result = $this->db->update($query);
+
+            $query = "UPDATE orders SET `status`='0' WHERE id = '$id'";
+            $result = $this->db->update($query);
+
             if ($result) {
                 $alert = '<script> toastr.success("Thanh toán thành công!");</script>';
                 return $alert;

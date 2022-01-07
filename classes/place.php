@@ -88,6 +88,9 @@ class place
         $query = "UPDATE `orders` SET `activate`='0' WHERE id = '$idOrder'";
         $result = $this->db->update($query);
 
+        $query = "UPDATE `orders` SET `status`='0' WHERE id = '$idOrder'";
+        $result = $this->db->update($query);
+
         if ($result) {
             $query = "SELECT * FROM orders WHERE id = '$idOrder'";
             $result = $this->db->select($query);
