@@ -35,8 +35,8 @@ class place
             return $alert;
         }
 
-        $query = "INSERT INTO `orders`(`fullname`, `phone`, `date_order`, `email`, `sport`, `time`, `deposit`, `description`) 
-        VALUES ('$fullname', '$phone', '$date_order', '$email', '$sport', '$time', '$deposit', '$description')";
+        $query = "INSERT INTO `orders`(`fullname`, `phone`, `date_order`, `email`, `sport`, `time`, `deposit`, `description`,`status`) 
+        VALUES ('$fullname', '$phone', '$date_order', '$email', '$sport', '$time', '$deposit', '$description','1')";
         $result = $this->db->insert($query);
 
         if ($result) {
