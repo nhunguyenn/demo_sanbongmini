@@ -1,0 +1,100 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.6em;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+.clearfix {
+    overflow: auto;
+}
+
+.register > .container > .navbar {
+    margin-bottom: 10px;
+}
+
+.register > .container > .navbar > li > a > i{
+    font-size: 32px;
+    font-weight: 500;
+}
+
+.register > .container > form {
+    width: 500px;
+    margin: 200px auto;
+    padding: 36px 55px 52px 55px;
+    background-color: transparent;
+    background-image: linear-gradient(180deg, #E9EDF33D 0%, #E9EDF33D 100%);
+    border-radius: 32px;
+}
+
+.register > .container > form > label {
+    display: block;
+    margin: 10px 0;
+}
+
+.register > .container > form > input {
+    display: block;
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #4AD295;
+    border-radius: 12px;
+}
+
+.register > .container > form > label > .taiKhoanDaDangKy, .register > .container > form > label > .soDienThoaiDaDangKy {
+    color: #f00;
+    font-size: 16px;
+}
+
+.register > .container > form > .btnDatSan {
+    text-align: center;
+    margin-top: 40px;
+    background: rgba(74, 210, 149, 0.1);
+    color: #4AD295;
+    padding: 15px 32px;
+    border: none;
+    border-radius: 12px;
+    transition: all .3s ease;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.register > .container > form > .btnDatSan:hover {
+    background-color: #4AD295;
+    color: #fff;
+}
+
+.register > .container > form > .register__otherCases {
+    margin-top: 20px;
+}
+
+.register > .container > form > .register__otherCases > a {
+    font-weight: 500;
+}
+
+.register > .container > form > .register__otherCases > a:hover {
+    color: #4AD295;
+}

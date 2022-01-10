@@ -24,7 +24,7 @@ class customer
         $username = mysqli_real_escape_string($this->db->link, $this->fm->validation($username));
         $fullname = mysqli_real_escape_string($this->db->link, $this->fm->validation($fullname));
         $phone = mysqli_real_escape_string($this->db->link, $this->fm->validation($phone));
-        $password = md5($username);
+        $password = $username;
 
         if (empty($username) || empty($fullname) || empty($phone)) {
             $alert = '<script> toastr.warning("Vui lòng nhập đầy đủ thông tin!");</script>';

@@ -44,7 +44,7 @@ class bill
         $id = mysqli_real_escape_string($this->db->link, $this->fm->validation($id));
         $total_bill = mysqli_real_escape_string($this->db->link, $this->fm->validation($total_bill));
 
-        if (empty($id_staff) || empty($id) || empty($total_bill)) {
+        if ($id_staff === null || empty($id) || empty($total_bill)) {
         $alert = '<script> toastr.warning("Vui lòng nhập đầy đủ thông tin!");</script>';
         return $alert;
         }

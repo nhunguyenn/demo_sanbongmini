@@ -5,5 +5,5 @@ if (!empty($_SERVER['HTTPS']) && ('on' == $_SERVER['HTTPS'])) {
 	$uri = 'http://';
 }
 $uri .= $_SERVER['HTTP_HOST'];
-header('Location: ' . $uri . '/demo_sanbongmini/admin/');
+header('Location: ' . $uri . '/demo_sanbongmini/user/');
 exit;

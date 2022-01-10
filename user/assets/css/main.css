@@ -1,0 +1,900 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.6em;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+.clearfix {
+    overflow: auto;
+}
+
+/* Navbar */
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.navbar > li:first-child{
+    display: none;
+}
+
+.navbar > li {
+    padding: 14px 16px;
+}
+
+.navbar > li > a, .navbar > li > .dropdown > a {
+    font-weight: 500;
+}
+
+.navbar > li > a:hover, .navbar > li > .dropdown > a:hover {
+    color: #4AD295;
+}
+
+.navbar > li > .dropdown i.fa-user {
+    padding: 0 8px;
+}
+
+.navbar > li:last-child {
+    position: absolute;
+    right: 0;
+}
+
+li > .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.navbar > li > .dropdown > .currentWallet {
+    display: none;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.navbar > li > .dropdown > .dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1;
+    background-color: #4AD295;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    border-color: #4AD295;
+}
+
+.navbar > li > .dropdown > .dropdown-content a {
+    padding: 12px 16px;
+    display: block;
+    font-size: 16px;
+    color: #FFF;
+}
+
+.navbar > li > .dropdown > .dropdown-content > a:hover {
+    color: #4AD295;
+    background-color: #FFF;
+}
+
+.navbar > li > .dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Slideshow */
+.slideshow {
+    position: relative;
+    margin: 20px 0;
+}
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+.slideshow > .mySlides {
+    display: none;
+    height: 100%;
+}
+
+.slideshow > .mySlides > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 40px;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+  
+.active, .dot:hover {
+    background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+/* Gioi thieu */
+.gioiThieu {
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding: 60px 0 60px 0;
+}
+
+.gioiThieu > .title {
+    margin-bottom: 50px;
+}
+
+.gioiThieu__container {
+    display: flex;
+    /* height: 100%; */
+    padding-bottom: 20px;
+}
+
+.gioiThieu__container > p {
+    flex-basis: 50%;
+    margin: 0;
+    padding-right: 50px;
+    line-height: 2.4;
+}
+
+.gioiThieu__container > img {
+    flex-basis: 50%;
+    width: 50%;
+    border-radius: 40px;
+}
+
+/* Loai san */
+.loaiSan {
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding: 60px 0 60px 0;
+}
+
+.loaiSan > .title {
+    text-align: center;
+    margin-bottom: 50px;
+
+}
+
+.loaiSan__container {
+    display: flex;
+    height: 100%;
+}
+
+.loaiSan__namNguoi, .loaiSan__bayNguoi {
+    flex-basis: 50%;
+    width: 100%;
+}
+
+.loaiSan__namNguoi > a > img, .loaiSan__bayNguoi > a > img {
+    display: block;
+    margin: 0 auto;
+    border-radius: 40px;
+}
+
+.loaiSan__namNguoi > a > img:hover, .loaiSan__bayNguoi > a > img:hover {
+    transform: scale(1.1);
+    transition: transform .5s;
+}
+
+.loaiSan__namNguoi__thongTin, .loaiSan__bayNguoi__thongTin {
+    padding: 50px 0 30px 0;
+    text-align: center;
+}
+
+.loaiSan__namNguoi__btnDatSan, .loaiSan__bayNguoi__btnDatSan {
+    text-align: center;
+}
+
+.loaiSan__namNguoi__btnDatSan > .btnDatSanNamNguoi, .loaiSan__bayNguoi__btnDatSan > .btnDatSanBayNguoi {
+    display: inline-block;
+    margin: 0 auto;
+    background: rgba(74, 210, 149, 0.1);
+    color: #4AD295;
+    padding: 15px 32px;
+    border-radius: 12px;
+    transition: all .3s ease;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.loaiSan__namNguoi__btnDatSan > .btnDatSanNamNguoi:hover, .loaiSan__bayNguoi__btnDatSan > .btnDatSanBayNguoi:hover {
+    background-color: #4AD295;
+    color: #fff;
+}
+
+/* Lich san */
+.lichSan {
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding: 60px 0 60px 0;
+}
+
+.lichSan > .title {
+    margin-bottom: 50px;
+}
+
+.lichSan > .lichSan__bang {
+    display: block;
+    width: 100%;
+    border-spacing: 5px;
+}
+.lichSan > .lichSan__bang > table th {
+    font-size: 20px;
+}
+
+.lichSan > .lichSan__bang > table th, .lichSan > .lichSan__bang > table td {
+    width: 300px;
+    border: 1px groove #4AD295;
+    border-radius: 5px;
+}
+.lichSan > .lichSan__bang > table th:first-child {
+    border: none;
+}
+
+.lichSan > .lichSan__bang > table td:first-child {
+    text-align: center;
+    border: none;
+}
+
+.lichSan > .lichSan__bang > table td.passedDay {
+    background-color: #717171;
+    pointer-events: none;
+    border: none;
+}
+
+.lichSan > .lichSan__bang > table td.booked {
+    background-color: #F00;
+    pointer-events: none;
+}
+
+.lichSan > .lichSan__bang > table td:not(:first-child) {
+    padding: 25px 0;
+}
+
+.lichSan > .lichSan__bang > table td:not(:first-child):hover {
+    transform: scale(1.01);
+    transition: transform .5s;
+    background-color: #4AD295;
+}
+
+.lichSan > .lichSan__luuY {
+    margin-top: 50px;
+    text-align: right;
+}
+
+.lichSan > .lichSan__luuY > input {
+    width: 50px;
+    margin: 0 10px;
+}
+
+.select-selected {
+    background-color: #4AD295;
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+    position: absolute;
+    content: "";
+    top: 25px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-radius: 12px;
+    border-color: #fff transparent transparent transparent;
+}
+  
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+    border-color: transparent transparent #fff transparent;
+    top: 10px;
+}
+  
+/* style the items (options), including the selected item: */
+.select-items div,.select-selected {
+    /* box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15); */
+    border-radius: 12px;
+    overflow: hidden;
+    z-index: 1;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    border-color: #4AD295;
+    padding: 12px 16px;
+    margin-top: 2px;
+}
+  
+/* Style items (options): */
+.select-items {
+    color: #4AD295;
+}
+
+.select-items div:hover {
+    color: #FFF;
+    background-color: #4AD295;
+}
+  
+/* Hide the items when the select box is closed: */
+.select-hide {
+    display: none;
+}
+
+/* Dat san */
+.titleDatSan {
+    margin-bottom: 50px;
+}
+
+.datSan {
+    display: flex;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    height: 1000px;
+}
+
+
+.datSan > .datSan__right {
+    width: 50%;
+    background-image: url("../images/peter-glaser-qWs_Wa1JrKM-unsplash.jpg");
+    border-radius: 40px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.datSan > .datSan__right > img {
+    width: 100%;
+}
+
+.datSan > .datSan__left {
+    width: 50%;
+}
+
+.datSan > .datSan__left > form {
+    width: 500px;
+    margin: 15% auto;
+    padding: 36px 55px 52px 55px;
+    background-color: transparent;
+    background-image: linear-gradient(180deg, #E9EDF33D 0%, #E9EDF33D 100%);
+    border-radius: 32px;
+}
+
+.datSan > .datSan__left > form > label {
+    display: block;
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.datSan > .datSan__left > form > input {
+    display: block;
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #4AD295;
+    border-radius: 12px;
+    font-size: 18px;
+}
+
+.datSan > .datSan__left > form > select {
+    display: block;
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #4AD295;
+    border-radius: 12px;
+    color: #4AD295;
+    background-color: #FFF;
+    font-size: 18px;
+}
+.datSan > .datSan__left > form > .hinhThuc {
+    margin: 10px 0;
+}
+
+.datSan > .datSan__left > form > .hinhThuc > label{
+    display: inline-block;
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.datSan > .datSan__left > form > .hinhThuc > input[type='radio'] {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.datSan > .datSan__left > form > .thanhTien {
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: right;
+    padding-right: 90px;
+}
+
+.datSan > .datSan__left > form > .thanhTien > .thanhTien__Text {
+    font-weight: bold;
+    font-size: 32px;
+    width: 220px;
+    text-align: right;
+    padding: 10px;
+    border: 1px solid #4AD295;
+    border-radius: 12px;
+}
+
+.datSan > .datSan__left > form > .btnDatSan {
+    text-align: center;
+    margin-top: 40px;
+    background: rgba(74, 210, 149, 0.1);
+    color: #4AD295;
+    padding: 15px 32px;
+    border: none;
+    border-radius: 12px;
+    transition: all .3s ease;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.datSan > .datSan__left > form > .btnDatSan:hover {
+    background-color: #4AD295;
+    color: #fff;
+}
+
+
+/* Lien he */
+.lienHe {
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding: 60px 0 60px 0;
+}
+
+.lienHe > .title {
+    margin-bottom: 50px;
+    text-align: end;
+}
+
+.lienHe > .lienHe__container {
+    display: flex;
+    height: 100%;
+    padding-bottom: 20px;
+}
+
+.lienHe__container > p {
+    flex-basis: 50%;
+    margin: 0;
+    padding-left: 50px;
+    line-height: 2.4;
+    text-align: end;
+}
+
+.lienHe__container > iframe {
+    flex-basis: 50%;
+    width: 100%;
+    border-radius: 40px;
+}
+
+
+/* Footer */
+.footer {
+    height: 100px;
+    background-color: #4AD295;
+    border-radius: 24px 24px 0px 0px;
+    position: relative;
+    margin-top: 100px;
+}
+
+.footer > .container {
+    color: #FFF;
+    font-weight: 500;
+    height: 100%;
+    line-height: 100px;
+}
+
+.footer > .container > .btnBackToTop {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding-right: 30px;
+}
+
+.footer > .container > .btnBackToTop > a > i {
+    padding: 10px;
+    background-color: #FFF;
+    border-radius: 50%;
+}
+
+.footer > .container > .btnBackToTop > a > i:hover {
+    color: #4AD295;
+}
+
+ /* The Modal (background) */
+ .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* Enable scroll if needed */
+    /* overflow: auto;  */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background: rgba(74, 210, 149);
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 36px 55px 52px 55px;
+    border: 1px solid #4AD295;
+    border-radius: 32px;
+    width: 500px; /* Could be more or less, depending on screen size */
+    position: relative;
+    color: #FFF;
+}
+.modal-content > p {
+    text-align: center;
+    padding: 0 10px;
+}
+
+.modal-content:hover {
+    color: #4AD295;
+    background-color: #FFF;
+}
+  
+/* The Close Button */
+.close {
+    color: #000;
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    font-size: 28px;
+    font-weight: bold;
+    
+}
+  
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+} 
+
+.napTien {
+    display: flex;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    height: 1000px;
+}
+
+.napTien > .napTien__right {
+    width: 50%;
+    background-image: url("../images/san-bong-thao-dien-img6.jpg");
+    border-radius: 40px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.napTien > .napTien__right > img {
+    width: 100%;
+}
+
+.napTien > .napTien__left {
+    width: 50%;
+}
+
+.napTien > .napTien__left > form {
+    width: 500px;
+    margin: 15% auto;
+    padding: 36px 55px 52px 55px;
+    background-color: transparent;
+    background-image: linear-gradient(180deg, #E9EDF33D 0%, #E9EDF33D 100%);
+    border-radius: 32px;
+}
+
+.napTien > .napTien__left > form > label {
+    display: block;
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.napTien > .napTien__left > form > input {
+    display: block;
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #4AD295;
+    border-radius: 12px;
+    font-size: 18px;
+}
+
+.napTien > .napTien__left > form > select {
+    display: block;
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #4AD295;
+    border-radius: 12px;
+    color: #4AD295;
+    background-color: #FFF;
+    font-size: 18px;
+}
+
+.napTien > .napTien__left > form > .btnNapTien {
+    text-align: center;
+    margin-top: 40px;
+    background: rgba(74, 210, 149, 0.1);
+    color: #4AD295;
+    padding: 15px 32px;
+    border: none;
+    border-radius: 12px;
+    transition: all .3s ease;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.napTien > .napTien__left > form > .btnNapTien:hover {
+    background-color: #4AD295;
+    color: #fff;
+}
+
+/* Thong tin ca nhan */
+.thongTinCaNhan {
+    display: flex;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    height: 1000px;
+}
+
+
+.thongTinCaNhan > .thongTinCaNhan__right {
+    width: 50%;
+    background-image: url("../images/robert-katzki-APZWYETwgp0-unsplash.jpg");
+    border-radius: 40px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.thongTinCaNhan > .thongTinCaNhan__right > img {
+    width: 100%;
+}
+
+.thongTinCaNhan > .thongTinCaNhan__left {
+    width: 50%;
+}
+
+.thongTinCaNhan > .thongTinCaNhan__left > form {
+    width: 500px;
+    margin: 15% auto;
+    padding: 36px 55px 52px 55px;
+    background-color: transparent;
+    background-image: linear-gradient(180deg, #E9EDF33D 0%, #E9EDF33D 100%);
+    border-radius: 32px;
+}
+
+.thongTinCaNhan > .thongTinCaNhan__left > form > label {
+    display: block;
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.thongTinCaNhan > .thongTinCaNhan__left > form > input {
+    display: block;
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #4AD295;
+    border-radius: 12px;
+    font-size: 18px;
+}
+
+.thongTinCaNhan > .thongTinCaNhan__left > form > select {
+    display: block;
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #4AD295;
+    border-radius: 12px;
+    color: #4AD295;
+    background-color: #FFF;
+    font-size: 18px;
+}
+
+.thongTinCaNhan > .thongTinCaNhan__left > form > p.errorMatKhau {
+    color: #F00;
+    margin-top: 20px;
+    margin-bottom: -20px;
+}
+
+
+.thongTinCaNhan > .thongTinCaNhan__left > form > .btnThongTinCaNhan {
+    text-align: center;
+    margin-top: 40px;
+    background: rgba(74, 210, 149, 0.1);
+    color: #4AD295;
+    padding: 15px 32px;
+    border: none;
+    border-radius: 12px;
+    transition: all .3s ease;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.thongTinCaNhan > .thongTinCaNhan__left > form > .btnThongTinCaNhan:hover {
+    background-color: #4AD295;
+    color: #fff;
+}
+
+/* Lich su dat san */
+.lichSuDatSan > .lichSuDatSan__img {
+    background-image: url('../images/san-bong-thao-dien-img6.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 800px;
+    border-radius: 40px;
+    margin-bottom: 50px;
+}
+
+.lichSuDatSan > .lichSuDatSan__title {
+    margin-bottom: 50px;
+}
+
+.lichSuDatSan > table.lichDatSan {
+    display: block;
+    width: 100%;
+    border-spacing: 5px;
+    text-align: center;
+}
+
+.lichSuDatSan > table.lichDatSan th {
+    font-size: 20px;
+}
+
+.lichSuDatSan > table.lichDatSan th, .lichSuDatSan > table.lichDatSan td {
+    width: 300px;
+    border: 1px groove #4AD295;
+    border-radius: 5px;
+}
+.lichSuDatSan > table.lichDatSan td:last-child {
+    border: none;
+}
+
+.lichSuDatSan > table.lichDatSan input.btnDelete {
+    background: rgba(74, 210, 149, 0.1);
+    padding: 15px 32px;
+    border: none;
+    border-radius: 12px;
+    transition: all .3s ease
+}
+
+.lichSuDatSan > table.lichDatSan input.btnDelete:hover {
+    background-color: #4AD295;
+    color: #fff;
+}
+
+/* The "responsive" for navbar */
+@media screen and (max-width: 700px) {
+    .navbar > li:not(:first-child) {
+        display: none;
+    }
+
+    .navbar > li:nth-child(2), .navbar > li:first-child {
+        display: block;
+    }
+
+    .navbar > li:first-child {
+        position: absolute;
+        left: 0;
+    }
+
+    
+    .slideshow {
+        height: 300px;
+    }
+}
+
+@media screen and (min-width: 701px) and (max-width: 1199px) {
+    .navbar > li:last-child {
+        position: static;
+    }    
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1399px) {
+    .slideshow {
+        height: 500px;
+    }
+
+    .loaiSan__namNguoi > a > img, .loaiSan__bayNguoi > a > img {
+        width: 300px;
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    /* Gioi thieu */
+    .gioiThieu__container > p {
+        line-height: 2;
+    }
+
+    /* Loai san */
+    .loaiSan__namNguoi > a > img, .loaiSan__bayNguoi > a > img {        
+        width: 500px;
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    /* Slideshow */
+    .slideshow {
+        height: 800px;
+    }
+
+    /* Gioi thieu */
+    .gioiThieu__container > p {
+        line-height: 2.4;
+    }
+
+    /* Loai san */
+    .loaiSan__namNguoi > a > img, .loaiSan__bayNguoi > a > img {        
+        width: 600px;
+    }
+}
+
+@media screen and (min-width: 2400px) {
+    .slideshow {
+        height: 1000px;
+    }
+}

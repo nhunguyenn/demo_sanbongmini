@@ -1,0 +1,150 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.6em;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+.clearfix {
+    overflow: auto;
+}
+
+.login > .container > .navbar {
+    margin-bottom: 10px;
+}
+
+.login > .container > .navbar > li > a > i{
+    font-size: 32px;
+    font-weight: 500;
+}
+
+.login > .container > form {
+    width: 500px;
+    margin: 200px auto;
+    padding: 36px 55px 52px 55px;
+    background-color: transparent;
+    background-image: linear-gradient(180deg, #E9EDF33D 0%, #E9EDF33D 100%);
+    border-radius: 32px;
+}
+
+.login > .container > form > label {
+    display: block;
+    margin: 10px 0;
+}
+
+.login > .container > form > input {
+    display: block;
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #4AD295;
+    border-radius: 12px;
+}
+
+.login > .container > form > .errorLogin{
+    color: #f00;
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: -20px;
+}
+
+.login > .container > form > .btnDatSan {
+    margin-top: 40px;
+    background: rgba(74, 210, 149, 0.1);
+    color: #4AD295;
+    padding: 15px 32px;
+    border: none;
+    border-radius: 12px;
+    transition: all .3s ease;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.login > .container > form > .btnDatSan:hover {
+    background-color: #4AD295;
+    color: #fff;
+}
+
+.login > .container > form > .login__otherCases {
+    margin-top: 20px;
+
+}
+
+.login > .container > form > .login__otherCases > a {
+    font-weight: 500;
+}
+
+.login > .container > form > .login__otherCases > a:hover {
+    color: #4AD295;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* Enable scroll if needed */
+    /* overflow: auto;  */
+}
+  
+/* Modal Content/Box */
+.modal-content {
+    background: rgba(74, 210, 149);
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 36px 55px 52px 55px;
+    border: 1px solid #4AD295;
+    border-radius: 32px;
+    width: 500px; /* Could be more or less, depending on screen size */
+    position: relative;
+    color: #FFF;
+}
+
+.modal-content:hover {
+    color: #4AD295;
+    background-color: #FFF;
+}
+  
+/* The Close Button */
+.close {
+    color: #000;
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    font-size: 28px;
+    font-weight: bold;
+    
+}
+  
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+} 
