@@ -32,7 +32,7 @@ class bill
     public function getOrder()
     {
         $query = "SELECT orders.id as id, orders.fullname, orders.phone, date_order, email, sport.name as name_sport, 
-        time.start as start_time, time.end as end_time, orders.deposit,orders.activate as activate ,sport.price as price,description FROM orders, sport, 
+        time.start as start_time, time.end as end_time, orders.deposit,orders.activate as activate ,sport.price as price,description FROM orders, sport,
         time WHERE orders.sport = sport.id AND orders.time = time.id order by activate DESC";
         $result = $this->db->select($query);
         return $result;
