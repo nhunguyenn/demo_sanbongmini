@@ -93,7 +93,9 @@
             foreach ($ordersTable as $order) {
                 if ($_POST['ngayDat'] == $order->date_order &&
                     $_POST['loaiSan'] == $order->sport &&
-                    $idTime == $order->time
+                    $idTime == $order->time &&
+                    $order->status == 1 &&
+                    $order->activate == 1
                 ) {
                     $duplicateOrder = true;
                 }

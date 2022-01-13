@@ -42,7 +42,13 @@
                 if (($_POST['maTheCao'] == $card->number) && ($_POST['nhaMang'] == $card->network) && ($card->status == 0)) {
                     $db->table('customer')->update(['price' => $currentWallet + $card->price], $currentId);
                     $db->table('card')->update(['status' => 1], $card->id);
-                    echo "<script>window.location.href = 'napTien.php'</script>";
+                    echo "<script>
+                        alert(\"Chúc mừng bạn đã nạp thành công\");
+                        window.location.href = 'napTien.php';
+                        </script>";
+                }
+                if (($_POST['maTheCao'] != $card->number) || ($_POST['nhaMang'] != $card->network) || ($card->status == 1)) {
+                    $warningMessage = 'Vui lòng kiểm tra lại thẻ cào';
                 }
             }
         }
@@ -69,7 +75,7 @@
                         <option value="Vinaphone">Vinaphone</option>
                         <option value='Vietnamobile'>Vietnamobile</option>
                     </select>
-    
+                    <p id='warningText' style='color: #F00; margin-top: 20px; margin-bottom: -20px;'></p>
                     <input class="btnNapTien" id="btnNapTien" type='submit' value='Nạp tiền' />
                 </form>
             </div>
@@ -78,18 +84,8 @@
     <?php include("views/footer.php") ?>
 
     <script type="text/javascript">
-        let sessionLoggedIn = '<?php echo $_SESSION['loggedIn']; ?>';
-        let dropdownDangNhap__textDangNhap = document.getElementById('dropdownDangNhap__textDangNhap');
-        let dropdownDangNhap__dropdownContent = document.getElementById('dropdownDangNhap__dropdownContent');
-        
-        if (sessionLoggedIn == 'true') {
-            dropdownDangNhap__textDangNhap.style.display = 'none';
-            dropdownDangNhap__dropdownContent.innerHTML = `
-                <a href="#">Thông tin tài khoản</a>
-                <a href="napTien.php">Nạp tiền</a>
-                <a href="./logout.php">Đăng xuất</a>
-            `;
-        }
+        let warningNapTien = '<?php isset($warningMessage) ? print($warningMessage) : print(" ")?>';
+        document.querySelector('#warningText').innerHTML = warningNapTien;
     </script>
 </body>
 </html>

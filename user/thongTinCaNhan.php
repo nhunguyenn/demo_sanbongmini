@@ -42,11 +42,14 @@
         if (
             isset($_POST['fullname']) && 
             isset($_POST['phone']) 
-        ) {
+        ) { 
             if (
                 isset($_POST['oldPassword']) &&
                 isset($_POST['newPassword']) &&
-                isset($_POST['repeatNewPassword'])
+                isset($_POST['repeatNewPassword']) &&
+                strlen($_POST['oldPassword']) > 0 &&
+                strlen($_POST['newPassword']) > 0 &&
+                strlen($_POST['repeatNewPassword']) > 0 
                 ) {
                     if ($currentPassword == $_POST['oldPassword'] && $_POST['newPassword'] == $_POST['repeatNewPassword']) {
                         $db->table('customer')->update(
@@ -56,21 +59,20 @@
                                 'password' => $_POST['newPassword']
                                 )
                         , $currentID);
-                        header('Location: thongTinCaNhan.php');
+                        echo '<script> window.location.href = \'thongTinCaNhan.php\';</script>';
                     } else {
-
                         $errorMessage = 'Xin vui lòng nhập lại mật khẩu';
-                    }
-                    
+                    }                    
             }
             else {
+                echo $currentPassword;
                 $db->table('customer')->update(
                     array(
                         'fullname' => $_POST['fullname'],
                         'phone' => $_POST['phone']
                         )
                 , $currentID);
-                header('Location: thongTinCaNhan.php');
+                echo '<script> window.location.href = \'thongTinCaNhan.php\';</script>';
             }
             
         }
@@ -108,7 +110,7 @@
 
 
     <script type="text/javascript">
-        let errorMatKhau = '<?php echo $errorMessage;?>';
+        let errorMatKhau = '<?php if (isset($errorMessage)) echo $errorMessage;?>';
         document.getElementById('errorMatKhau').innerHTML = errorMatKhau;    
     </script>
 </body>
