@@ -105,7 +105,7 @@
     ?>
 
     <div class="lichSan" id="lichSan">
-        <h2 class="title">Lịch sân bạn được chọn</h2>
+        <h2 class="title">Lịch sân 5:5 thứ nhất</h2>
 
         <div class="lichSan__bang" id="lichSan__bang">
 
