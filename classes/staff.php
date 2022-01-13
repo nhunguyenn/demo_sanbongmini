@@ -24,7 +24,7 @@ class staff
         $username = mysqli_real_escape_string($this->db->link, $this->fm->validation($username));
         $fullname = mysqli_real_escape_string($this->db->link, $this->fm->validation($fullname));
         $role = mysqli_real_escape_string($this->db->link, $this->fm->validation($role));
-        $password = md5($username);
+        $password = $username;
 
         if (empty($username) || empty($fullname) || empty($role)) {
             $alert = '<script> toastr.warning("Vui lòng nhập đầy đủ thông tin!");</script>';
