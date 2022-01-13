@@ -98,7 +98,7 @@ class place
             if ($result) {
                 $value = $result->fetch_assoc();
                 $total_bill = $value['deposit'];
-                $query = "INSERT INTO `bills`(`staff`, `total_bill`, `activate`) VALUES ('$idStaff','$total_bill','0')";
+                $query = "INSERT INTO `bills`(`staff`,`customer`,`total_bill`, `activate`) VALUES ('$idStaff','$idOrder','$total_bill','0')";
                 $result = $this->db->insert($query);
 
                 if ($result) {

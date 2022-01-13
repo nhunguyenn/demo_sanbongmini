@@ -18,6 +18,7 @@ $sport = new sport();
 $time = new time();
 $place = new place();
 $bill = new bill();
+$statistical = new statistical();
 // Header
 include_once './layouts/header.php';
 
@@ -86,6 +87,9 @@ if (isset($_GET['q'])) {
             break;
         case 'payment':
             include_once './views/bill/payment.php';
+            break;
+        case 'statistical':
+            include_once './views/statistical/statistical.php';
             break;
         default:
             include_once './views/error.php';
