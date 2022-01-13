@@ -9,7 +9,6 @@
 
     $customerTable = $db->table('customer')->get();
     $ordersTable = $db->table('orders')->get();
-    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,6 +51,7 @@
             }
             foreach ($ordersTable as $order) {
                 if ($order->id == $_POST['id']) {
+                    $db->table('bills')->insert(['staff' => $idCustomer, 'customer' => $order->id, 'total_bill' => $order->deposit, 'activate' => 0]);
                     $db->table('orders')->update(array('activate' => 0, 'status' => 0), $_POST['id']);
                 }
             }
