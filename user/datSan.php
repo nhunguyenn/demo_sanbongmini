@@ -8,6 +8,7 @@
     $db = new $dbClassName();
     
     $customerTable = $db->table('customer')->get();
+    $ordersTable = $db->table('orders')->get();
     foreach ($customerTable as $account) {
         if (isset($_SESSION['username'])) {
             if ($_SESSION['username'] == $account->username) {
@@ -89,26 +90,33 @@
                     $idTime = 11;
             }
 
-            switch ($_POST['loaiSan']) {
-                case 'sanNam': 
-                    $idSport = 9;
-                    break;
-                default:
-                    $idSport = 11;                
+            foreach ($ordersTable as $order) {
+                if ($_POST['ngayDat'] == $order->date_order &&
+                    $_POST['loaiSan'] == $order->sport &&
+                    $idTime == $order->time
+                ) {
+                    $duplicateOrder = true;
+                }
             }
-            
-            $db->table('orders')->insert([
-                'username' => $_POST['username'],
-                'fullname' => $_POST['fullname'],
-                'phone' => $_POST['phone'],
-                'date_order' => $_POST['ngayDat'],
-                'sport' => $idSport,
-                'time' => $idTime,
-                'deposit' => $thanhTien__Text,
-                'activate' => 1,
-                'status' => 1
-            ]);
-            header('location: ./');
+            if (isset($duplicateOrder)) {
+                $messageDuplicateOrder = 'Khung giờ trong ngày đã được đặt';
+            }
+            else {
+                $db->table('orders')->insert([
+                    'username' => $_POST['username'],
+                    'fullname' => $_POST['fullname'],
+                    'phone' => $_POST['phone'],
+                    'date_order' => $_POST['ngayDat'],
+                    'sport' => $_POST['loaiSan'],
+                    'time' => $idTime,
+                    'deposit' => $thanhTien__Text,
+                    'activate' => 1,
+                    'status' => 1
+                ]);
+    
+                $successBooking = 'Đặt sân thành công';        
+            }
+
         }
         
     }
@@ -135,9 +143,9 @@
                     <label for="khungGioDat">Khung giờ đặt</label>
                     <input type="text" name="khungGioDat" id="khungGioDat" readonly /> 
                     <label for="loaiSan">Loại sân</label>    
-                    <select name="loaiSan" id="loaiSanSelect" class="loaiSanSelect">       
-                        <option value="sanNam" selected>Sân năm</option>
-                        <option value="sanBay">Sân bảy</option>
+                    <select name="loaiSan" id="loaiSanSelect" class="loaiSanSelect" readonly >       
+                        <option value="9" selected>Sân năm</option>
+                        <option value="12">Sân bảy</option>
                     </select>             
                     <div class="hinhThuc">
                         <label for="hinhThuc">Đặt cọc</label>
@@ -162,6 +170,9 @@
 
 
     <script type="text/javascript">
+        let successBooking = '<?php (isset($successBooking)) ? print($successBooking) : print('')?>';
+        let messageDuplicateOrder = '<?php (isset($messageDuplicateOrder)) ? print($messageDuplicateOrder) : print('')?>';
+
         function numberWithCommas(number) {
             return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
@@ -178,53 +189,67 @@
         let khungGioDat = sessionStorage.getItem('khungGioDat');
         document.getElementById('khungGioDat').value = khungGioDat.trim();
 
+        let loaiSan = sessionStorage.getItem('loaiSan');
         let loaiSanSelect = document.getElementById('loaiSanSelect');
+        loaiSanSelect.value = loaiSan;        
 
         let radios = document.getElementsByName('hinhThuc');
         let thanhTien;
         let hinhThucThanhToan = 'datCoc';
-        for (let temp = 0; temp < radios.length; temp++) {
-            radios[temp].addEventListener('change', () => {
-                hinhThucThanhToan = radios[temp].value;
+        // for (let temp = 0; temp < radios.length; temp++) {
+        //     radios[temp].addEventListener('change', () => {
+        //         hinhThucThanhToan = radios[temp].value;
 
-                if (loaiSanSelect.value == 'sanNam' && hinhThucThanhToan == 'datCoc') {
-                    thanhTien = 250000;
-                    document.querySelector('#thanhTien__Text').value = numberWithCommas(thanhTien);
-                }
-                else if (loaiSanSelect.value == 'sanBay' && hinhThucThanhToan == 'datCoc') {
-                    thanhTien = 450000;
-                    document.querySelector('#thanhTien__Text').value = numberWithCommas(thanhTien);
-                }
-                else if (loaiSanSelect.value == 'sanNam' && hinhThucThanhToan == 'traHet') {
-                    thanhTien = 500000;
-                    document.querySelector('#thanhTien__Text').value = numberWithCommas(thanhTien);
-                }
-                else if (loaiSanSelect.value == 'sanBay' && hinhThucThanhToan == 'traHet') {
-                    thanhTien = 800000;
-                    document.querySelector('#thanhTien__Text').value = numberWithCommas(thanhTien);
-                }
-            })
-        }
+        //         if (loaiSanSelect.value == 'sanNam' && hinhThucThanhToan == 'datCoc') {
+        //             thanhTien = 250000;
+        //             document.querySelector('#thanhTien__Text').value = numberWithCommas(thanhTien);
+        //         }
+        //         else if (loaiSanSelect.value == 'sanBay' && hinhThucThanhToan == 'datCoc') {
+        //             thanhTien = 450000;
+        //             document.querySelector('#thanhTien__Text').value = numberWithCommas(thanhTien);
+        //         }
+        //         else if (loaiSanSelect.value == 'sanNam' && hinhThucThanhToan == 'traHet') {
+        //             thanhTien = 500000;
+        //             document.querySelector('#thanhTien__Text').value = numberWithCommas(thanhTien);
+        //         }
+        //         else if (loaiSanSelect.value == 'sanBay' && hinhThucThanhToan == 'traHet') {
+        //             thanhTien = 800000;
+        //             document.querySelector('#thanhTien__Text').value = numberWithCommas(thanhTien);
+        //         }
+        //     })
+        // }
         
-        document.querySelector('#thanhTien__Text').value = numberWithCommas(250000);
+        if (loaiSanSelect.value == '9') {
+            document.querySelector('#thanhTien__Text').value = numberWithCommas(250000);
+        } else {
+            document.querySelector('#thanhTien__Text').value = numberWithCommas(450000);
+        }
         loaiSanSelect.addEventListener('change', () => {
-            if (loaiSanSelect.value == 'sanNam' && hinhThucThanhToan == 'datCoc') {
+            if (loaiSanSelect.value == '9' && hinhThucThanhToan == 'datCoc') {
                     thanhTien = 250000;
                     document.querySelector('#thanhTien__Text').value = numberWithCommas(thanhTien);
             }
-            else if (loaiSanSelect.value == 'sanBay' && hinhThucThanhToan == 'datCoc') {
+            else if (loaiSanSelect.value == '12' && hinhThucThanhToan == 'datCoc') {
                 thanhTien = 450000;
                 document.querySelector('#thanhTien__Text').value = numberWithCommas(thanhTien);
             }
-            else if (loaiSanSelect.value == 'sanNam' && hinhThucThanhToan == 'traHet') {
-                thanhTien = 500000;
-                document.querySelector('#thanhTien__Text').value = numberWithCommas(thanhTien);
-            }
-            else if (loaiSanSelect.value == 'sanBay' && hinhThucThanhToan == 'traHet') {
-                thanhTien = 800000;
-                document.querySelector('#thanhTien__Text').value = numberWithCommas(thanhTien);
-            }
+            // else if (loaiSanSelect.value == 'sanNam' && hinhThucThanhToan == 'traHet') {
+            //     thanhTien = 500000;
+            //     document.querySelector('#thanhTien__Text').value = numberWithCommas(thanhTien);
+            // }
+            // else if (loaiSanSelect.value == 'sanBay' && hinhThucThanhToan == 'traHet') {
+            //     thanhTien = 800000;
+            //     document.querySelector('#thanhTien__Text').value = numberWithCommas(thanhTien);
+            // }
         }); 
+
+        if (messageDuplicateOrder.length > 1) {
+            alert(messageDuplicateOrder);
+        }
+        if (successBooking.length > 1) {
+            alert('Chúc mừng bạn đã đặt sân thành công');
+            window.location.href = './';
+        }
     </script>
 </body>
 </html>

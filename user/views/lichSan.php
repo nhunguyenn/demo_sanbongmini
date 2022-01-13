@@ -87,6 +87,11 @@
         $orderDateArray = [];
         $orderTimeArray = [];
         $orderedQuantity = 0;
+
+        if (isset($_POST['switchChonLichSan'])) {
+            $switchChonLichSan = 'true';
+        }
+        
         if (isset($ordersTable)) {
             if (isset($_SESSION['username'])) {
                 foreach($ordersTable as $order) {
@@ -95,18 +100,40 @@
                     }
                 }
             }
-            foreach($ordersTable as $order) {
-                if ($order->status == 1) {
-                    array_push($orderTimeArray, $order->time);
-                    array_push($orderDateArray, getColIndex($order->date_order));
+            if (isset($_POST['chonLichSan'])) {
+                foreach($ordersTable as $order) {
+                    if ($order->status == 1) {
+                        if ($_POST['chonLichSan'] == 9) {
+                            if ($order->sport == 9) {
+                                array_push($orderTimeArray, $order->time);
+                                array_push($orderDateArray, getColIndex($order->date_order));
+                            }
+                        }
+                        if ($_POST['chonLichSan'] == 12) {
+                            if ($order->sport == 12) {
+                                array_push($orderTimeArray, $order->time);
+                                array_push($orderDateArray, getColIndex($order->date_order));
+                            }
+                        }
+                    }
                 }
             }
         }
+
     ?>
 
     <div class="lichSan" id="lichSan">
-        <h2 class="title">Lịch sân bạn được chọn</h2>
-
+        <div class="lichSan__chonLichSan">
+            <form action="./#lichSan" method='post'>
+                <label for="chonLichSan"><h2 class="title">Theo dõi trạng thái sân bóng</h2></label>
+                <select name="chonLichSan" id="chonLichSan">
+                    <option value="9">Sân Năm</option>
+                    <option value="12">Sân Bảy</option>
+                </select>
+                <input type='hidden' name='switchChonLichSan' />
+                <input type='submit' value='Dò' id='btnChonLichSan' class='btnChonLichSan'/>
+            </form>
+        </div>
         <div class="lichSan__bang" id="lichSan__bang">
 
         </div>
@@ -136,6 +163,8 @@
         let saturday = '<?php echo $saturday;?>';
         let sunday = '<?php echo $sunday;?>';
         let nextMonday = '<?php echo $nextMonday;?>';
+        let switchChonLichSan = '<?php (isset($switchChonLichSan)) ? print($switchChonLichSan) : print("false") ?>';
+        document.querySelector('#chonLichSan').value = '<?php (isset($_POST['chonLichSan'])) ? print($_POST['chonLichSan']) : print('9') ?>';
 
 
         const tableHeaders = () => {   
@@ -241,8 +270,7 @@
 
         const table = document.querySelector('#bangLichSan');
         const rows = document.querySelectorAll('tr');   
-        console.log(rowIndexInactive);
-        console.log(columnIndexInactive);
+
         for (let i = 0; i < rowIndexInactive.length; i++) {
             table.rows[rowIndexInactive[i]].cells[columnIndexInactive[i]].classList.add('booked');
         }
@@ -326,10 +354,16 @@
             if (orderedQuantity > 2) {
                 alert("Mỗi tài khoản chỉ được đặt tối đa 3 suất/tuần");
             }
-            else if (loggedIn == 'true') {
-                sessionStorage.setItem('ngayDat', ngayDat);
-                sessionStorage.setItem('khungGioDat', khungGioDat);
-                window.location.href = 'datSan.php';
+            else if (loggedIn === 'true') {
+                if (switchChonLichSan === 'true') {
+                    sessionStorage.setItem('ngayDat', ngayDat);
+                    sessionStorage.setItem('khungGioDat', khungGioDat);
+                    sessionStorage.setItem('loaiSan', <?php print($_POST['chonLichSan']);?>)
+                    window.location.href = 'datSan.php';
+                } 
+                else {
+                    alert("Vui lòng nhấn nút \"Dò\" để theo dõi trạng thái sân");
+                }
             } else {
                 alert("Vui lòng đăng nhập để có thể đặt sân");
             }

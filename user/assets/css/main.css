@@ -280,9 +280,39 @@ li > .dropdown {
     margin-bottom: 60px;
     padding: 60px 0 60px 0;
 }
+.lichSan > .lichSan__chonLichSan {
+    margin-bottom: 25px;
+}
 
-.lichSan > .title {
+.lichSan > .lichSan__chonLichSan label .title {
     margin-bottom: 50px;
+}
+
+.lichSan > .lichSan__chonLichSan select {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #4AD295;
+    border-radius: 12px;
+    color: #4AD295;
+    background-color: #FFF;
+    font-size: 18px;
+}
+
+.lichSan > .lichSan__chonLichSan .btnChonLichSan {
+    text-align: center;
+    background: rgba(74, 210, 149, 0.1);
+    color: #4AD295;
+    padding: 15px 32px;
+    border: none;
+    border-radius: 12px;
+    transition: all .3s ease;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.lichSan > .lichSan__chonLichSan .btnChonLichSan:hover {
+    background-color: #4AD295;
+    color: #fff;
 }
 
 .lichSan > .lichSan__bang {
