@@ -65,7 +65,6 @@
                     }                    
             }
             else {
-                echo $currentPassword;
                 $db->table('customer')->update(
                     array(
                         'fullname' => $_POST['fullname'],
