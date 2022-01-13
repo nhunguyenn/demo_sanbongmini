@@ -8,6 +8,7 @@
     $db = new $dbClassName();
 
     $customerTable = $db->table('customer')->get();
+    $ordersTable = $db->table('orders')->get();
     
 ?>
 <!DOCTYPE html>
@@ -49,7 +50,11 @@
                     $walletCustomer = $customer->price;
                 }
             }
-            $db->table('orders')->delete($_POST['id']);
+            foreach ($ordersTable as $order) {
+                if ($order->id == $_POST['id']) {
+                    $db->table('orders')->update(array('activate' => 0, 'status' => 0), $_POST['id']);
+                }
+            }
             echo "<script>window.location.href = 'lichSuDatSan.php'</script>";
         }
 
@@ -69,8 +74,8 @@
             ";
         }
         function createBodyTable() {
-            GLOBAL $db;
-            $ordersTable = $db->table('orders')->get();
+            GLOBAL $ordersTable;
+
             if (isset($ordersTable)) {
                 foreach($ordersTable as $order) {
                     switch ($order->time) {
@@ -107,7 +112,7 @@
                         default:
                             $orderTime = '19:00 - 20:00';
                     }
-                    if ($order->username == $_SESSION['username'] && $order->status == 1) {
+                    if ($order->username == $_SESSION['username'] && $order->status == 1 && $order->activate == 1) {
                         echo "<form action='lichSuDatSan.php' method='post'><tr><td>" . "<input type='hidden' name='id' value='$order->id'/>" . $order->id . "</td>"
                             . "<td>" . "<input type='hidden' name='username' value='$order->username'/>" . $order->username . "</td>"
                             . "<td>" . "<input type='hidden' name='phone' value='$order->phone'/>" . $order->phone . "</td>"
