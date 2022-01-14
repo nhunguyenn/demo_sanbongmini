@@ -9,7 +9,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-                        <li class="breadcrumb-item active">Quản lý đặt sân</li>
+                        <li class="breadcrumb-item active">Quản lý doanh thu</li>
                     </ol>
                 </div>
             </div>
@@ -22,7 +22,7 @@
             <div class="col-md-6 mx-auto">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Thống kê hóa đơn theo năm</h3>
+                        <h3 class="card-title">Thống kê hóa đơn </h3>
                     </div>
                     <div class="card-body p-0">
                         <table class="table table-striped projects">
