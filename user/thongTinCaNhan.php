@@ -52,26 +52,52 @@
                 strlen($_POST['repeatNewPassword']) > 0 
                 ) {
                     if ($currentPassword == $_POST['oldPassword'] && $_POST['newPassword'] == $_POST['repeatNewPassword']) {
-                        $db->table('customer')->update(
-                            array(
-                                'fullname' => $_POST['fullname'],
-                                'phone' => $_POST['phone'],
-                                'password' => $_POST['newPassword']
-                                )
-                        , $currentID);
-                        echo '<script> window.location.href = \'thongTinCaNhan.php\';</script>';
+                        foreach($customerTable as $customer) {
+                            if ($customer->phone == $_POST['phone'] && $_POST['phone'] != $currentPhone) {
+                                $duplicatedPhone = true;
+                            }
+                        }
+                        if (isset($duplicatedPhone)) {
+                            $messageDuplicatedPhone = 'Số điện thoại đã được đăng ký!';
+                        }
+                        else {
+                            $db->table('customer')->update(
+                                array(
+                                    'fullname' => $_POST['fullname'],
+                                    'phone' => $_POST['phone'],
+                                    'password' => $_POST['newPassword']
+                                    )
+                            , $currentID);
+                            echo '<script> 
+                                alert(\'Chúc mừng bạn cập nhật thành công\');
+                                window.location.href = \'thongTinCaNhan.php\';
+                                </script>';
+                        }
                     } else {
                         $errorMessage = 'Xin vui lòng nhập lại mật khẩu';
                     }                    
             }
             else {
-                $db->table('customer')->update(
-                    array(
-                        'fullname' => $_POST['fullname'],
-                        'phone' => $_POST['phone']
-                        )
-                , $currentID);
-                echo '<script> window.location.href = \'thongTinCaNhan.php\';</script>';
+                foreach($customerTable as $customer) {
+                    if ($customer->phone == $_POST['phone'] && $_POST['phone'] != $currentPhone) {
+                        $duplicatedPhone = true;
+                    }
+                }
+                if (isset($duplicatedPhone)) {
+                    $messageDuplicatedPhone = 'Số điện thoại đã được đăng ký!';
+                }
+                else {
+                    $db->table('customer')->update(
+                        array(
+                            'fullname' => $_POST['fullname'],
+                            'phone' => $_POST['phone']
+                            )
+                    , $currentID);
+                    echo '<script> 
+                    alert(\'Chúc mừng bạn cập nhật thành công\');
+                    window.location.href = \'thongTinCaNhan.php\';
+                        </script>';
+                }
             }
             
         }
@@ -90,7 +116,7 @@
                     <input name="username" value="<?php echo $currentUsername;?>" readonly />
                     <label for="fullname">Họ và tên</label>
                     <input name="fullname" value="<?php echo $currentFullname;?>" />
-                    <label for="phone">Số điện thoại</label>
+                    <label for="phone">Số điện thoại <span id="soDienThoaiDaDangKy" style="color: #F00; font-size: 16px;"></span></label>
                     <input name="phone" value="<?php echo $currentPhone;?>" />
                     <label for="oldPassword">Mật khẩu cũ</label>
                     <input type='password' name="oldPassword" />   
@@ -110,7 +136,9 @@
 
     <script type="text/javascript">
         let errorMatKhau = '<?php if (isset($errorMessage)) echo $errorMessage;?>';
+        let messageDuplicatedPhone = '<?php if (isset($messageDuplicatedPhone)) echo $messageDuplicatedPhone ?>';
         document.getElementById('errorMatKhau').innerHTML = errorMatKhau;    
+        document.querySelector('#soDienThoaiDaDangKy').innerHTML = messageDuplicatedPhone;
     </script>
 </body>
 </html>
